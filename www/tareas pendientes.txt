@@ -1,0 +1,3 @@
+1 - Despues de listar ya no me vuelve a tomar los datos (data is undefined). (Resuelto)
+2 - Falta el método de agregar un usuario por ajax.
+3 - El limpiar, no limpia bien los id  (Resuelto).
