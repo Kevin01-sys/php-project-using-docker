@@ -23,11 +23,11 @@
 			var table = $("#dt_cliente").DataTable({
 				paging: false,
 				ajax:{
-					//"method":"POST",
-					//"url": "listarUsuario.php"
+					"method":"POST",
+					"url": "listarUsuario.php"
 					// Se deja la ruta para consumir la api de node.js
-					"method":"GET",
-					"url": "http://localhost:4000/api/movies"
+					//"method":"GET",
+					//"url": "http://localhost:4000/api/movies"
 				},
 				columns:[
     				{"data":"run"},
