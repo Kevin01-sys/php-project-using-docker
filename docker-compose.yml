@@ -3,24 +3,6 @@
 version: '3'
 
 services:
-  app:
-    build:
-      # Envia la variable ${PHP_VERSION} al Dockerfile de la ruta ./docker/php
-      # en ese archivo se construira la imagen para este contenedor
-      context: ./docker/php
-      args:
-        php_version: ${PHP_VERSION}
-    image: php-apache
-    container_name: ${APP_PROJECT_NAME}
-    # Se expone el puerto-> puerto el cual queda expuesto : puerto dentro del servicio
-    ports:
-      - "${PHP_PORT}:80"
-    volumes:
-    # bind mount
-      - ./www:/var/www/html
-    #links:
-    depends_on:
-      - mysql
   mysql:
   # Imagen que se usara para construir el servicio
     build:
@@ -30,7 +12,7 @@ services:
     # se deja el "image" para darle un nombre especifico a la imagen al momento de crearlo 
     image: 8.0.27
     #image: mysql/mysql-server:8.0.27
-    container_name: ${DB_PROJECT_NAME}
+    container_name: ${COMPOSE_PROJECT_NAME}-mysql
     # Se asignan variables de entorno
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -45,7 +27,29 @@ services:
     # volume in memory
       - dbdata:/var/lib/mysql
     restart: always
+
+  php:
+    build:
+      # Envia la variable ${PHP_VERSION} al Dockerfile de la ruta ./docker/php
+      # en ese archivo se construira la imagen para este contenedor
+      context: ./docker/php
+      args:
+        php_version: ${PHP_VERSION}
+    image: php-apache
+    container_name: ${COMPOSE_PROJECT_NAME}-php
+    # Se expone el puerto-> puerto el cual queda expuesto : puerto dentro del servicio
+    ports:
+      - "${PHP_PORT}:80"
+    volumes:
+    # bind mount
+      - ./www:/var/www/html
+    #links:
+    depends_on:
+      - mysql
+
 volumes:
   dbdata: 
+    external: false
+
 
 
