@@ -16,8 +16,10 @@ services:
     ports:
       - "${PHP_PORT}:80"
     volumes:
+    # bind mount
       - ./www:/var/www/html
-    links:
+    #links:
+    depends_on:
       - mysql
   mysql:
   # Imagen que se usara para construir el servicio
@@ -39,6 +41,11 @@ services:
     # Se expone el puerto-> puerto el cual queda expuesto : puerto dentro del servicio
     ports:
       - "3306:3306"
+    volumes:
+    # volume in memory
+      - dbdata:/var/lib/mysql
     restart: always
+volumes:
+  dbdata: 
 
 
