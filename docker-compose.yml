@@ -10,7 +10,7 @@ services:
       args:
         mysql_version: ${MYSQL_VERSION}
     # se deja el "image" para darle un nombre especifico a la imagen al momento de crearlo 
-    image: 8.0.27
+    image: mysql:${MYSQL_VERSION}
     #image: mysql/mysql-server:8.0.27
     container_name: ${COMPOSE_PROJECT_NAME}-mysql
     # Se asignan variables de entorno
@@ -35,7 +35,7 @@ services:
       context: ./docker/php
       args:
         php_version: ${PHP_VERSION}
-    image: php-apache
+    image: php:${PHP_VERSION}
     container_name: ${COMPOSE_PROJECT_NAME}-php
     # Se expone el puerto-> puerto el cual queda expuesto : puerto dentro del servicio
     ports:
