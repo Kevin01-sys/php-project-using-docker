@@ -28,7 +28,27 @@
 
 			$db->liberar();
 			$db->cerrar();
-	
+			
+	/* Testing in Arrays
+	// Print a complete Array
+	print_r($data).'<br>';
+	var_dump($data).'<br>';
+	// Print a variable within the Array
+	echo $data['status'].'<br>';
+	echo 'Run: '.$data['data'][1]['run'].'<br>';
+	//Print a set of arrays
+	foreach($data['data'] as $clave => $valor) {
+		echo 'Id: '.$valor['id'].'<br>';
+		echo 'Run: '.$valor['run'].'<br>';
+		echo 'Nombre: '.$valor['nombre'].'<br>';
+		echo 'hobby: '.$valor['hobby'].'<br>';
+	}
+	// Print a specific Array
+	foreach($data['data'][0] as $clave => $valor) {
+		echo 'passing through the Array '.$clave.'	';
+		echo 'passing through the Value '.$valor.'<br>';
+	}
+	*/	
 	//returns data as JSON format
 	echo json_encode($data);
 
