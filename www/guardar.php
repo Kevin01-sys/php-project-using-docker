@@ -26,7 +26,7 @@
 					$informacion["respuesta"] = "EXISTE";
 					echo json_encode($informacion);
 				}else{
-					$result=$user->store_users($run,$nombre, $hobby);
+					$result=$user->store_user($run,$nombre, $hobby);
 					verificar_resultado($result);
 				}
 				
@@ -36,7 +36,7 @@
 			}
 			break;		
 		case 'modificar':
-			$result=$user->update_users($run,$nombre, $hobby,$id);
+			$result=$user->update_user($run,$nombre, $hobby,$id);
 			verificar_resultado($result);
 			break;
 

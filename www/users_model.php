@@ -35,7 +35,7 @@ class users_model extends Connect {
     }
     
     /* Store users in the database */
-    public function store_users($run,$nombre, $hobby){
+    public function store_user($run,$nombre, $hobby){
 		$query = "INSERT INTO usuarios VALUES(NULL,?,?,?,1)";
 		$stmt = $this->db->prepare($query);
 	    // Binds variables to a prepared statement
@@ -51,7 +51,7 @@ class users_model extends Connect {
 
     }
 
-    public function update_users($run, $nombre, $hobby,$id){
+    public function update_user($run, $nombre, $hobby,$id){
 		// Prepara una sentencia SQL con parámetros de signos de interrogación
 		$query= "UPDATE usuarios SET run=?, nombre=?, hobby=? WHERE id = ?";
 		// Se valida el resultado de preparación: null o 1 
