@@ -18,3 +18,15 @@
 		echo 'passing through the Value '.$valor.'<br>';
 	}
 	*/
+
+	/* 	function registrar($run,$nombre, $hobby, $db){
+		// Prepara una sentencia SQL con parámetros de signos de interrogación
+		$query = "INSERT INTO usuarios VALUES(NULL,?,?,?,1)";
+		$validarpreparar=$db->preparar($query);
+	    	// Vincula variables a una sentencia preparada como parámetros
+	    	$db->prep()->bind_param('sss',$run,$nombre,$hobby);
+		    $resultado = $db->ejecutar();
+			verificar_resultado($resultado);
+		    $db->liberar();
+			$db->cerrar();
+	} */

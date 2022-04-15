@@ -1,6 +1,7 @@
 <?php
 	/*Con el require_once haremos uso del archivo Config.php donde guardamos en constantes los datos requeridos para conectarnos a la BD.*/
 	require_once "config.php";
+	require_once "users_model.php";
 	/*La función spl_autoload_register permite cargar o llamar automáticamente una función que le pasemos, es decir es un "autoloader", dentro pasaremos un "require_once" con un parametro $clase, el truco es que, cuando instanciemos una clase que no esta en nuestro archivo, esa variable tomara el nombre de la clase, en el caso más abajo será "Database", así si en un futuro tenemos muchas clases en distintos archivos, no tendremos que hacer un "require" o un "include" por cada una.*/
 	spl_autoload_register(function($clase){
 		require_once "$clase.php";
@@ -12,6 +13,7 @@
 	extract($_POST, EXTR_OVERWRITE);
 	//Instanciamos la clase Database para hacer la conexión y las consultas.
 	$db= new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+	$user = new users_model();
 
 	// Se ejecutan en función de lo que trae $opción
 	switch ($opcion) {
@@ -24,7 +26,8 @@
 					$informacion["respuesta"] = "EXISTE";
 					echo json_encode($informacion);
 				}else{
-					registrar($run,$nombre, $hobby, $db);
+					$result=$user->store_users($run,$nombre, $hobby);
+					verificar_resultado($result);
 				}
 				
 			}else{
@@ -40,18 +43,6 @@
 			eliminar($id,$db);
 			break;
 
-	}
-
-	function registrar($run,$nombre, $hobby, $db){
-		// Prepara una sentencia SQL con parámetros de signos de interrogación
-		$query = "INSERT INTO usuarios VALUES(NULL,?,?,?,1)";
-		$validarpreparar=$db->preparar($query);
-	    	// Vincula variables a una sentencia preparada como parámetros
-	    	$db->prep()->bind_param('sss',$run,$nombre,$hobby);
-		    $resultado = $db->ejecutar();
-			verificar_resultado($resultado);
-		    $db->liberar();
-			$db->cerrar();
 	}
 
 	function modificar($id,$run, $nombre, $hobby, $db){

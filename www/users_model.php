@@ -15,7 +15,7 @@ class users_model extends Connect {
 		$this->users = array();
 	}
 
-/*     Get all active users from database */
+    /* Get all active users from database */
     public function get_users(){
         $this->users = [];
         $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE estado = 1");
@@ -33,8 +33,33 @@ class users_model extends Connect {
                 return $this->users;
 
     }
+    
+    /* Store users in the database */
+    public function store_users($run,$nombre, $hobby){
+		$query = "INSERT INTO usuarios VALUES(NULL,?,?,?,1)";
+		$stmt = $this->db->prepare($query);
+	    // Binds variables to a prepared statement
+	    $stmt->bind_param('sss',$run,$nombre,$hobby);
+        // execute() -> Returns true on success or false on error.
+		$result = $stmt->execute();
 
-/*  static method:   Get all active users from database */
+        $stmt->free_result();
+        $stmt->close();
+
+        // ternary operator: if result is True return 1, if result is False return 0
+        return $result? 1 : 0;
+
+    }
+
+    public function update_users(){
+        
+    }
+
+    public function find_user(){
+        
+    }
+
+    /* static method: Get all active users from database */
     public static function static_get_users(){
         $db = self::connection();
         $stmt = $db->prepare("SELECT * FROM usuarios WHERE estado = 1");
