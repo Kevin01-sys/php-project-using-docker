@@ -1,16 +1,13 @@
 <?php
-	/*Con el require_once haremos uso del archivo Config.php donde guardamos en constantes los datos requeridos para conectarnos a la BD.*/
-	require_once "config.php";
-	require_once "Database.php";
-	//require_once "users_model.php";
+	/* With the require_once we make use of the file users_model.php*/
+	require_once "users_model.php";
 
-	// Instantiate the Database class to make the connection and the queries
-	$db= new Database();
-/* 	$user = new users_model();
-	$data = $user->get_users(); */
+	// The model for querying the database is instantiated.
+	$user = new users_model();
 
 	// The list with all users is brought
-	$data = $db->listarUsuarios();
+	$data = $user->get_users();
+	//$data = users_model::static_get_users();
 
 	//returns data as JSON format
 	echo json_encode($data);
