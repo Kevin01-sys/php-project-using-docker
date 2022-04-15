@@ -15,7 +15,7 @@
 		case 'registrar':
 			//If the variables are empty, the user is prompted on the screen to fill in all fields
 			if($run != "" && $nombre != "" && $hobby != ""){
-				$validarUsuario= $db->validarDatos("run","usuarios",$run);
+				$validarUsuario= $user->validate_data("run","usuarios",$run);
 				// Validates if the user exists
 				if($validarUsuario>0){
 					$informacion["respuesta"] = "EXISTE";

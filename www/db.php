@@ -12,7 +12,7 @@ require_once('config.php');
 			//$this->con = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 			$con = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 			if($con->connect_errno){
-				echo "error<br>Fallo la conexion con Mysql, tipo de error -> ({$con->connect_error}) <a href='index.php'>Regresar</a>";  
+				echo "error<br>Fallo la conexion con Mysql, tipo de error -> ({$con->connect_error}) <a href='index.html'>Regresar</a>";  
 			}
 			return $con;
 		}

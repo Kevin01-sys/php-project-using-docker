@@ -85,6 +85,13 @@ class users_model extends Connect {
 
     }
 
+    /* to check if the user already exists, sending as parameters, the column we want, from which table and under what condition, it is a simple SELECT */
+    public function validate_data($column, $table, $condition){
+        $result= $this->db->query("SELECT $column FROM $table WHERE $column = '$condition'");
+        $check= $this->$result->num_rows;
+        return $check; 
+    }
+
     public function find_user(){
         
     }
