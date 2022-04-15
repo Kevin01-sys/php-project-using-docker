@@ -1,4 +1,5 @@
 <?php
+	require_once "config.php";
 
 class Database{
 
@@ -10,8 +11,8 @@ class Database{
 
     /*En el metodo constructor de la clase, $db pasara a ser una instancia de la clase mysqli, despúes verificamos que no haya habido algún error, usando la propiedad "connect_errno" que devolvera un codigo de error, si envia 0 entonces no ocurrieron errores. (0 = false).*/
 
-    public function __construct($dbhost, $dbuser, $db_pass, $db_name){
-        $this->db= new mysqli($dbhost, $dbuser, $db_pass, $db_name);
+    public function __construct(){
+        $this->db = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
         if($this->db->connect_errno){
             echo "error<br>Fallo la conexion con Mysql, tipo de error -> ({$this->db->connect_error}) <a href='index.php'>Regresar</a>";  
         }
@@ -50,6 +51,7 @@ class Database{
     /*Usaremos una función pública para acceder a la sentencia que es una variable encapsulada/protected desde afuera de la clase, ya que usaremos un método que posee.*/
 
     public function prep(){
+
         return $this->prep;
     }
 
@@ -68,6 +70,22 @@ class Database{
     public function cerrar(){
         $this->prep->close();
         $this->db->close();
+    }
+
+    function listarUsuarios(){
+        $stmt = $this->db->prepare("SELECT * FROM usuarios WHERE estado = 1");
+        $stmt->execute();
+        $stmt->bind_result($id,$run,$nombre_BD,$hobby_BD,$estado_BD);
+			// resultado() en Database hace un fetch() por lo que ira pasando fila por fila en el registro de lo que encuentra
+			while($stmt->fetch()){
+				$data['status'] = 'ok';
+				$data['data'][]  = ["id"=> $id,"run" => $run,"nombre" => $nombre_BD,"hobby" => $hobby_BD];
+				}
+                $stmt->free_result();
+                $stmt->close();
+
+                return $data;
+
     }
 
 }
