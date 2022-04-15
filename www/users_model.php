@@ -34,7 +34,7 @@ class users_model extends Connect {
 
     }
     
-    /* Store users in the database */
+    /* Store user in the database */
     public function store_user($run,$nombre, $hobby){
 		$query = "INSERT INTO usuarios VALUES(NULL,?,?,?,1)";
 		$stmt = $this->db->prepare($query);
@@ -51,12 +51,12 @@ class users_model extends Connect {
 
     }
 
+    /* Update user in the database */
     public function update_user($run, $nombre, $hobby,$id){
-		// Prepara una sentencia SQL con parámetros de signos de interrogación
+		// Prepares a SQL statement with question mark parameters
 		$query= "UPDATE usuarios SET run=?, nombre=?, hobby=? WHERE id = ?";
-		// Se valida el resultado de preparación: null o 1 
 	    $stmt = $this->db->prepare($query);
-	    // Vincula variables a una sentencia preparada como parámetros
+	    // Binds variables to a prepared statement
 	    $stmt->bind_param('sssi',$run,$nombre,$hobby,$id);
 		$result = $stmt->execute();
 
@@ -65,6 +65,24 @@ class users_model extends Connect {
 
         // ternary operator: if result is True return 1, if result is False return 0
         return $result? 1 : 0;
+    }
+
+    /* Deactivates or deletes a user from the database */
+    public function delete_user($id){
+		$query= "UPDATE usuarios SET estado=0 WHERE id = ?";
+        $stmt = $this->db->prepare($query);
+        if($stmt){
+	    	// Binds variables to a prepared statement
+		    $stmt->bind_param('i', $id);
+		    $stmt->execute();
+
+            $stmt->free_result();
+            $stmt->close();
+
+        }
+        // ternary operator: if result is True return 1, if result is False return 0
+        return $stmt? 1 : 0;
+
     }
 
     public function find_user(){

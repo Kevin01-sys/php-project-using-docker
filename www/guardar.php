@@ -1,27 +1,22 @@
 <?php
-	/*Con el require_once haremos uso del archivo Config.php donde guardamos en constantes los datos requeridos para conectarnos a la BD.*/
-	require_once "config.php";
 	require_once "users_model.php";
-	/*La función spl_autoload_register permite cargar o llamar automáticamente una función que le pasemos, es decir es un "autoloader", dentro pasaremos un "require_once" con un parametro $clase, el truco es que, cuando instanciemos una clase que no esta en nuestro archivo, esa variable tomara el nombre de la clase, en el caso más abajo será "Database", así si en un futuro tenemos muchas clases en distintos archivos, no tendremos que hacer un "require" o un "include" por cada una.*/
-	spl_autoload_register(function($clase){
-		require_once "$clase.php";
 
-	});
 	$informacion = [];
-	$estado=1;
-	//Se traen los datos $_POST
+
+	//The $_POST data is fetched
 	extract($_POST, EXTR_OVERWRITE);
-	//Instanciamos la clase Database para hacer la conexión y las consultas.
-	$db= new Database(DB_HOST,DB_USER,DB_PASS,DB_NAME);
+
+	// The model for querying the database is instantiated.
 	$user = new users_model();
 
-	// Se ejecutan en función de lo que trae $opción
+	// They are executed according to what $opcion brings
 	switch ($opcion) {
+
 		case 'registrar':
-			//Si las variables vienen vacias se le avisa al usuario por pantalla que debe llenar todos los campos
+			//If the variables are empty, the user is prompted on the screen to fill in all fields
 			if($run != "" && $nombre != "" && $hobby != ""){
 				$validarUsuario= $db->validarDatos("run","usuarios",$run);
-				// si el usuario no existe se ingresa, sino se le avisa al usuario que no puede ingresarlo
+				// Validates if the user exists
 				if($validarUsuario>0){
 					$informacion["respuesta"] = "EXISTE";
 					echo json_encode($informacion);
@@ -35,35 +30,20 @@
 				echo json_encode($informacion);
 			}
 			break;		
+
 		case 'modificar':
 			$result=$user->update_user($run,$nombre, $hobby,$id);
 			verificar_resultado($result);
 			break;
 
 		case 'eliminar':
-			eliminar($id,$db);
+			$result=$user->delete_user($id);
+			verificar_resultado($result);
 			break;
 
 	}
-
-	function eliminar($id,$db){
-		$query= "UPDATE usuarios SET estado=0 WHERE id = ?";
-		$validarpreparar=$db->preparar($query);
-	    // Si trae datos que ejecute el proceso de adjuntar variables a Query y ejecutarla
-	    if ($validarpreparar==1){
-	    	// Vincula variables a una sentencia preparada como parámetros
-		    $db->prep()->bind_param('i', $id);
-		    $resultado = $db->ejecutar();
-			verificar_resultado($resultado);
-		    $db->liberar();
-			$db->cerrar();
-	    } 
-	    	else { // No se ejecuta y solo se muestra el mensaje de error en pantalla
-	    	verificar_resultado($validarpreparar);
-	    }
-	}
-
 	
+	/* Validates if the user table could be modified or changed. */
 	function verificar_resultado($resultado){
 		if (! $resultado )  $informacion["respuesta"] = "ERROR";
 		else $informacion["respuesta"] = "BIEN";

@@ -30,3 +30,20 @@
 		    $db->liberar();
 			$db->cerrar();
 	} */
+
+/* 	function eliminar($id,$db){
+		$query= "UPDATE usuarios SET estado=0 WHERE id = ?";
+		$validarpreparar=$db->preparar($query);
+	    // Si trae datos que ejecute el proceso de adjuntar variables a Query y ejecutarla
+	    if ($validarpreparar==1){
+	    	// Vincula variables a una sentencia preparada como parámetros
+		    $db->prep()->bind_param('i', $id);
+		    $resultado = $db->ejecutar();
+			verificar_resultado($resultado);
+		    $db->liberar();
+			$db->cerrar();
+	    } 
+	    	else { // No se ejecuta y solo se muestra el mensaje de error en pantalla
+	    	verificar_resultado($validarpreparar);
+	    }
+	} */
