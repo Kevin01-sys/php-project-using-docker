@@ -36,26 +36,13 @@
 			}
 			break;		
 		case 'modificar':
-			modificar($id,$run, $nombre, $hobby, $db);
+			$result=$user->update_users($run,$nombre, $hobby,$id);
+			verificar_resultado($result);
 			break;
 
 		case 'eliminar':
 			eliminar($id,$db);
 			break;
-
-	}
-
-	function modificar($id,$run, $nombre, $hobby, $db){
-		// Prepara una sentencia SQL con parámetros de signos de interrogación
-		$query= "UPDATE usuarios SET run=?, nombre=?, hobby=? WHERE id = ?";
-		// Se valida el resultado de preparación: null o 1 
-	    $validarpreparar=$db->preparar($query);
-	    	// Vincula variables a una sentencia preparada como parámetros
-	    	$db->prep()->bind_param('sssi',$run,$nombre,$hobby,$id);
-		    $resultado = $db->ejecutar();
-			verificar_resultado($resultado);
-		    $db->liberar();
-			$db->cerrar();
 
 	}
 

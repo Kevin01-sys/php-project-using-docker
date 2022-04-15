@@ -51,8 +51,20 @@ class users_model extends Connect {
 
     }
 
-    public function update_users(){
-        
+    public function update_users($run, $nombre, $hobby,$id){
+		// Prepara una sentencia SQL con parámetros de signos de interrogación
+		$query= "UPDATE usuarios SET run=?, nombre=?, hobby=? WHERE id = ?";
+		// Se valida el resultado de preparación: null o 1 
+	    $stmt = $this->db->prepare($query);
+	    // Vincula variables a una sentencia preparada como parámetros
+	    $stmt->bind_param('sssi',$run,$nombre,$hobby,$id);
+		$result = $stmt->execute();
+
+        $stmt->free_result();
+        $stmt->close();
+
+        // ternary operator: if result is True return 1, if result is False return 0
+        return $result? 1 : 0;
     }
 
     public function find_user(){
