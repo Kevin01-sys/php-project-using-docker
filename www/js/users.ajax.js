@@ -24,6 +24,15 @@
                     {"defaultContent": "<button type='button' id='buttonEditar' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>	<button type='button'id='buttonEliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}	
                 ],
                 language: spanish_language,
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        "text": "<i class='fa fa-user-plus'></i>'",
+                        "titleAttr": "Agregar Usuario",
+                        "action": function(){
+                            prepare_new_user();
+                        }
+                }]
             });
 
             get_data_edit("#dt_cliente tbody", table);
