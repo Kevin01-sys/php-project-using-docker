@@ -9,7 +9,7 @@
             $('#dt_cliente').empty();
             table.destroy();
             table = $("#dt_cliente").DataTable({
-                paging: false,
+                paging: true,   
                 ajax:{
                     "method":"POST",
                     "url": "users_list.php"
@@ -24,17 +24,38 @@
                     {"defaultContent": "<button type='button' id='buttonEditar' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>	<button type='button'id='buttonEliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}	
                 ],
                 language: spanish_language,
-                dom: 'Bfrtip',
+/*                 dom: 'Bfrtip', */
+				dom: "<'row'<'form-inline' <'col-sm-offset-5'B>>>"
+					 +"<'row' <'form-inline' <'col-sm-2'f>>>"
+					 +"<rt>"
+					 +"<'row'<'form-inline'"
+					 +" <'col-sm-6 col-md-6 col-lg-6'l>"
+					 +"<'col-sm-6 col-md-6 col-lg-6'p>>>",//'Bfrtip',
                 buttons: [
                     {
-                        "text": "<i class='fa fa-user-plus'></i>'",
-                        "titleAttr": "Agregar Usuario",
-                        "action": function(){
+                        text: "<i class='fa fa-user-plus'></i>",
+		                titleAttr: 'Agregar',
+                        action: () =>{
                             prepare_new_user();
                         }
-                }]
+                    },
+		            {
+		                extend:    'excelHtml5',
+                        text: "<i class='fa fa-file-excel-o'></i>",
+		                titleAttr: 'Excel'
+		            },
+		            {
+		                extend:    'csvHtml5',
+                        text: "<i class='fa fa-file-text-o'></i>",
+		                titleAttr: 'CSV'
+		            },
+		            {
+		                extend:    'pdfHtml5',
+                        text: "<i class='fa fa-file-pdf-o'></i>",
+		                titleAttr: 'PDF'
+		            }
+                ]
             });
-
             get_data_edit("#dt_cliente tbody", table);
             get_data_delete("#dt_cliente tbody", table);
         }
