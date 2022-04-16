@@ -1,14 +1,14 @@
-	   // When the btn_listar button is pressed, the listar() function will occur.
+	   // When the btn_listar button is pressed, the list_user() function will occur.
        $("#btn_listar").on("click", function(){
-       		listar();
+       		list_user();
        });
 
        $("#agregarUsuario").on("click", function(){
-       		agregar_nuevo_usuario();
+       		prepare_new_user();
        });
 
     	//The variables of the edit row are obtained 
-    	const obtener_data_editar = (tbody, table) => {
+    	const get_data_edit = (tbody, table) => {
     		$(tbody).on("click", "button.editar", function(){
     			const data = table.row( $(this).parents("tr") ).data();	
     			const idusuario = $("#id").val(data.id),
@@ -24,7 +24,7 @@
     	}
 
     	// The variables of the row to be eliminated are obtained
-    	const obtener_id_eliminar = (tbody, table) => {
+    	const get_data_delete = (tbody, table) => {
     		$(tbody).on("click", "#buttonEliminar", function(){
     			const data = table.row( $(this).parents("tr")).data();
     			console.log(data);	
@@ -33,14 +33,14 @@
     	}
 		
 		// hides the Datatable, displays the form and clears the data
-		const agregar_nuevo_usuario = () => {
+		const prepare_new_user = () => {
 			$("#cuadro2").slideDown("slow");
 			$("#cuadro1").slideUp("slow");
-			limpiar_datos();
+			data_cleaning();
 		}
 
 		// cleans the fields
-		const limpiar_datos = () => {
+		const data_cleaning = () => {
 		    $("#run").val("").focus();
 		    $("#nombreusuario").val("");
 		    $("#hobby").val("");
@@ -49,7 +49,7 @@
 		}
 
 		// Function used to display a message on the screen
-		const mostrar_mensaje = (informacion) => {
+		const display_message = (informacion) => {
 			let texto = "", color = "";
 			if( informacion.respuesta == "BIEN" ){
 					texto = "<strong>Bien!</strong> Se han guardado los cambios correctamente.";

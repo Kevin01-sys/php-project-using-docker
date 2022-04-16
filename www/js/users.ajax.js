@@ -1,8 +1,8 @@
-	   // The "listar()" function transforms the table "dt_client" into a Datatable and fetches the data from the server.  
-       const listar = () =>{
+	   // The "list_user()" function transforms the table "dt_client" into a Datatable and fetches the data from the server.  
+       const list_user = () =>{
             $("#cuadro2").slideUp("slow");
             $("#cuadro1").slideDown("slow");
-            // DataTable gave problems after using the listar(), to solve it we used empty()
+            // DataTable gave problems after using the list_user(), to solve it we used empty()
             // I was getting "data is undefined" when trying to bring the row to a variable or duplicate or even triplicate data and it would go up every time I listed 
             // It is initialized, left empty, destroyed, and reassembled. This is the process every time you list
             let table = $('#dt_cliente').DataTable();
@@ -23,15 +23,15 @@
                     {"data":"hobby"},
                     {"defaultContent": "<button type='button' id='buttonEditar' class='editar btn btn-primary'><i class='fa fa-pencil-square-o'></i></button>	<button type='button'id='buttonEliminar' class='eliminar btn btn-danger' data-toggle='modal' data-target='#modalEliminar' ><i class='fa fa-trash-o'></i></button>"}	
                 ],
-                language: idioma_espanol,
+                language: spanish_language,
             });
 
-            obtener_data_editar("#dt_cliente tbody", table);
-            obtener_id_eliminar("#dt_cliente tbody", table);
+            get_data_edit("#dt_cliente tbody", table);
+            get_data_delete("#dt_cliente tbody", table);
         }
 
        // The data to edit the user are sent 
-       const guardar = () => {
+       const save_user = () => {
             $("#frmEditarUsuario").on("submit", function(e){
                 e.preventDefault();
                 const frm = $(this).serialize();
@@ -42,15 +42,15 @@
                 }).done(function(info){
                     const json_info = JSON.parse(info);
                     console.log(json_info);
-                    mostrar_mensaje(json_info);
-                    limpiar_datos();
-                    listar();
+                    display_message(json_info);
+                    data_cleaning();
+                    list_user();
                 });
             });
         }
 
     	// User is deleted when their status is changed to zero
-        const eliminar = () => {
+        const delete_user = () => {
             $("#eliminar-usuario").on("click",function(){
                 let idusuario = $("#frmEliminarUsuario #id").val(),
                     opcion = $("#frmEliminarUsuario #opcion").val();
@@ -60,15 +60,15 @@
                         data: {"id": idusuario,"opcion": opcion}
                     }).done(function(info){
                         const json_info=JSON.parse(info);
-                        mostrar_mensaje(json_info);
-                        limpiar_datos();
-                        listar();
+                        display_message(json_info);
+                        data_cleaning();
+                        list_user();
                         console.log(json_info);
                     })
             });
         }
 
-		// It was replaced by the "listar() function", but it is still useful for testing.
+		// It was replaced by the "list_user() function", but it is still useful for testing.
 		/*const mostrarDatos = (id) => {
 		    //let id = '<?=$id?>';
 		    $.ajax({

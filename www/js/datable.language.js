@@ -1,5 +1,5 @@
 		// Variable used to set up the Data table in Spanish language			
-		const idioma_espanol = {
+		const spanish_language = {
 		    "aria": {
 		        "sortAscending": ": orden ascendente",
 		        "sortDescending": ": orden descendente"
