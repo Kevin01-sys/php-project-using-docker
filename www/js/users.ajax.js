@@ -101,38 +101,12 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                     })
             });
         }
-        
-        // When the btn_listar button is pressed, the list_user() function will occur.
-        $("#btn_listar").on("click", function(){
-        		list_user();
-        });
 
-        $("#agregarUsuario").on("click", function(){
-        		prepare_new_user();
-        });
-        
+        // By pressing the buttons, the following functions will occur
+        $("#btn_listar").on("click", () =>list_user());
+        $("#agregarUsuario").on("click", () =>prepare_new_user());
 
+        /* Functions to be executed when loading the file */ 
         list_user();
         save_user();
         delete_user();
-
-
-		// It was replaced by the "list_user() function", but it is still useful for testing.
-		/*const mostrarDatos = (id) => {
-		    //let id = '<?=$id?>';
-		    $.ajax({
-		        type: "POST",
-		        url: "users_list.php",
-		        dataType: "json",
-		        data: {
-		            'id': id
-		        },
-		        success: function(data) {
-		            $('#test').html(data);
-		            console.log(data);
-		            //$('#test').value(data);
-		            //$('#test').innerhtml(data);
-		            //$('#test').load(data);
-		        }
-		    });
-		}*/

@@ -7,23 +7,11 @@
 	<title>Tutorial Conexión PHP BD puro</title>
 	<!-- CSS used to style the sheet -->
 	<link href="css/basic.css" rel="stylesheet" title="Default Style">
-	<!-- Libraries that could be for document export buttons but did not work
-	<link href="buttons.dataTables.min.css" rel="stylesheet" title="Default Style">
-	<link href="jquery.dataTables.min.css" rel="stylesheet" title="Default Style">-->
-	<!-- Datatable Libraries-->
-	<!-- <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/> -->
-	<!-- Bootstrap libraries -->
-	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-	<!-- Button icon libraries -->
-<!-- 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"> -->
+	<link rel="shortcut icon" href="#">
 	<!-- With the rel link and the 2 scripts the modal can be lifted. -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/datatables.min.css"/>
-
-
-	<script src="js/datatable/jquery-3.5.1.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!-- Form to register and update users -->
@@ -62,11 +50,7 @@
 		</div>
 	</div>
 	<!-- End of User Registration Form -->
-
 	<!--<div class="note" id="Registrar y botones exportar"><a name="registrar y botones exportar"></a><h1>Registrar y botones exportar</h1>Describa aquí su nota nueva.</div>-->
-	
-
-
 	<!-- User Datatable -->
 	<div class="row">
 		<div id="cuadro1" class="col-sm-12 col-md-12 col-lg-12">
@@ -120,8 +104,9 @@
 		</form>
 	</div>
   <!-- End Modal delete user -->
-	
-	<!-- Script required to use the Datatable-->
+  	<script src="js/users.ajax.js" type="module"></script>
+  	<script src="js/datatable/jquery-3.5.1.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<!-- Library for the use of Datatable buttons-->
 	<script src="js/datatable/jquery.dataTables.min.js"></script>
 	<script src="js/datatable/dataTables.buttons.min.js"></script>
@@ -129,14 +114,11 @@
 	<script src="js/datatable/pdfmake.min.js"></script>
 	<script src="js/datatable/vfs_fonts.js"></script>
 	<script src="js/datatable/buttons.html5.min.js"></script>
-	<script src="js/users.ajax.js" type="module"></script>
 
 <!--     <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/datatables.min.js"></script> -->
-	
-<!--     <script src="js/app.js" type="module"></script> -->
 
 </body>
 </html>
