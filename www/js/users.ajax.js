@@ -15,7 +15,7 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                 paging: true,   
                 ajax:{
                     "method":"POST",
-                    "url": "users_list.php"
+                    "url": "../controllers/users_list.php"
                     // The path for consuming the node.js api is left
                     //"method":"GET",
                     //"url": "http://localhost:4000/api/movies"
@@ -70,7 +70,7 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                 const frm = $(this).serialize();
                 $.ajax({
                     method: "POST",
-                    url: "users_save.php",
+                    url: "../controllers/users_save.php",
                     data: frm
                 }).done(function(info){
                     const json_info = JSON.parse(info);
@@ -90,7 +90,7 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                     opcion = $("#frmEliminarUsuario #opcion").val();
                     $.ajax({
                         method: "POST",
-                        url: "users_save.php",
+                        url: "../controllers/users_save.php",
                         data: {"id": idusuario,"opcion": opcion}
                     }).done(function(info){
                         const json_info=JSON.parse(info);

@@ -1,5 +1,6 @@
 <?php
-	require_once "users_model.php";
+	/* With the require_once we make use of the file users_model.php*/
+	require_once "../models/users_model.php";
 
 	$informacion = [];
 
