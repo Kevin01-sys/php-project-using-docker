@@ -27,3 +27,7 @@ div.note {
  	      	   white-space: pre-wrap;      /* CSS3 */
  	      	   word-wrap: break-word;      /* IE 5.5+ */ 
 }
+
+.nombreClase{
+     zoom: 1;
+}

@@ -1,5 +1,5 @@
-		// Variable used to set up the Data table in Spanish language			
-		const spanish_language = {
+// Variable used to set up the Data table in Spanish language			
+export const spanish_language = {
 		    "aria": {
 		        "sortAscending": ": orden ascendente",
 		        "sortDescending": ": orden descendente"
@@ -201,3 +201,5 @@
 		    "thousands": ".",
 		    "zeroRecords": "No se encontraron registros"
 		}
+
+/* export default spanish_language; */

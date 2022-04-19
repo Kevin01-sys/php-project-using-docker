@@ -1,5 +1,8 @@
-	   // The "list_user()" function transforms the table "dt_client" into a Datatable and fetches the data from the server.  
-       const list_user = () =>{
+import {spanish_language} from "./datatable/language.js";
+import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display_message} from "./app.js";
+
+       // The "list_user()" function transforms the table "dt_client" into a Datatable and fetches the data from the server.  
+        const list_user = () =>{
             $("#cuadro2").slideUp("slow");
             $("#cuadro1").slideDown("slow");
             // DataTable gave problems after using the list_user(), to solve it we used empty()
@@ -61,7 +64,7 @@
         }
 
        // The data to edit the user are sent 
-       const save_user = () => {
+        const save_user = () => {
             $("#frmEditarUsuario").on("submit", function(e){
                 e.preventDefault();
                 const frm = $(this).serialize();
@@ -78,9 +81,10 @@
                 });
             });
         }
+        
 
     	// User is deleted when their status is changed to zero
-        const delete_user = () => {
+         const delete_user = () => {
             $("#eliminar-usuario").on("click",function(){
                 let idusuario = $("#frmEliminarUsuario #id").val(),
                     opcion = $("#frmEliminarUsuario #opcion").val();
@@ -97,6 +101,21 @@
                     })
             });
         }
+        
+        // When the btn_listar button is pressed, the list_user() function will occur.
+        $("#btn_listar").on("click", function(){
+        		list_user();
+        });
+
+        $("#agregarUsuario").on("click", function(){
+        		prepare_new_user();
+        });
+        
+
+        list_user();
+        save_user();
+        delete_user();
+
 
 		// It was replaced by the "list_user() function", but it is still useful for testing.
 		/*const mostrarDatos = (id) => {
