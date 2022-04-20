@@ -67,15 +67,15 @@
 		}
 		
 		/* depending on the option chosen by the user, will determine whether the method is PUT, POST or DELETE. */
-        export const get_form_method = (option) => {
+        export const get_form_method = (option='') => {
             let method;
-            if (option==='registrar' && option=='registrar'){
-                return method = 'POST';
-            } else if (option==='modificar'&& option=='modificar'){
-                return method = 'PUT';
-            } else if (option==='eliminar'&& option=='eliminar'){
-                return method = 'DELETE';
-            }
-            console.log(option);
-            console.log(method);
+			if (!option || option==='registrar') return method = 'POST';
+			if (option==='modificar') return method = 'PUT'; 
+			if (option==='eliminar') return method = 'DELETE';
+			return console.warn(`Debe ingresar una opcion valida "${option}"`)
+
+/* 			if (!option || option==='registrar') return method = 'POST'
+			else if (option==='modificar') return method = 'PUT'
+			else if (option==='eliminar') return method = 'DELETE' 
+			else return console.warn(`Debe ingresar una opcion valida "${option}"`) */
         }
