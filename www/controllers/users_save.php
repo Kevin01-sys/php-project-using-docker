@@ -4,15 +4,12 @@
 
 	$informacion = [];
 
-	//The $_POST data is fetched
+	// Accessing incoming PUT or DELETE data from PHP
 	if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 		parse_str(file_get_contents("php://input"),$_POST);
-/* 		$id = $post_vars["id"];
-		$opcion = $post_vars["opcion"];
-		$run = $post_vars["run"];
-		$nombre = $post_vars["nombre"];
-		$hobby = $post_vars["hobby"]; */
 	}
+
+	//The $_POST data is fetched
 	extract($_POST, EXTR_OVERWRITE);
 
 	// The model for querying the database is instantiated.

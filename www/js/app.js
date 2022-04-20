@@ -65,7 +65,8 @@
 					$(this).fadeIn(3000);
 			});			
 		}
-
+		
+		/* depending on the option chosen by the user, will determine whether the method is PUT, POST or DELETE. */
         export const get_form_method = (option) => {
             let method;
             if (option==='registrar' && option=='registrar'){

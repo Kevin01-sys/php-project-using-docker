@@ -70,9 +70,9 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                 let method;
                 let option;
                 const frm = $(this).serializeArray();
+                //const object = JSON.stringify(frm);
                 option = frm[1].value;
                 method = get_form_method(option);
-                //console.log(frm);
                 $.ajax({
                     method: method,
                     url: "../controllers/users_save.php",
@@ -94,12 +94,13 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
             $("#eliminar-usuario").on("click",function(){
                 let idusuario = $("#frmEliminarUsuario #id").val(),
                     opcion = $("#frmEliminarUsuario #opcion").val();
-                    console.log(opcion);
+                    //console.log(opcion);
                     $.ajax({
                         method: "PUT",
                         url: "../controllers/users_save.php",
                         data: {"id": idusuario,"opcion": opcion}
                     }).done(function(info){
+                        console.log(info);
                         const json_info=JSON.parse(info);
                         display_message(json_info);
                         data_cleaning();
