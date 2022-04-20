@@ -1,5 +1,5 @@
 import {spanish_language} from "./datatable/language.js";
-import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display_message} from "./app.js";
+import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display_message, get_form_method} from "./app.js";
 
        // The "list_user()" function transforms the table "dt_client" into a Datatable and fetches the data from the server.  
         const list_user = () =>{
@@ -14,7 +14,7 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
             table = $("#dt_cliente").DataTable({
                 paging: true,   
                 ajax:{
-                    "method":"POST",
+                    "method":"GET",
                     "url": "../controllers/users_list.php"
                     // The path for consuming the node.js api is left
                     //"method":"GET",
@@ -67,9 +67,14 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
         const save_user = () => {
             $("#frmEditarUsuario").on("submit", function(e){
                 e.preventDefault();
-                const frm = $(this).serialize();
+                let method;
+                let option;
+                const frm = $(this).serializeArray();
+                option = frm[1].value;
+                method = get_form_method(option);
+                //console.log(frm);
                 $.ajax({
-                    method: "POST",
+                    method: method,
                     url: "../controllers/users_save.php",
                     data: frm
                 }).done(function(info){
@@ -81,6 +86,7 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                 });
             });
         }
+
         
 
     	// User is deleted when their status is changed to zero
@@ -88,8 +94,9 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
             $("#eliminar-usuario").on("click",function(){
                 let idusuario = $("#frmEliminarUsuario #id").val(),
                     opcion = $("#frmEliminarUsuario #opcion").val();
+                    console.log(opcion);
                     $.ajax({
-                        method: "POST",
+                        method: "PUT",
                         url: "../controllers/users_save.php",
                         data: {"id": idusuario,"opcion": opcion}
                     }).done(function(info){

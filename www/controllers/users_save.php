@@ -5,6 +5,14 @@
 	$informacion = [];
 
 	//The $_POST data is fetched
+	if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+		parse_str(file_get_contents("php://input"),$_POST);
+/* 		$id = $post_vars["id"];
+		$opcion = $post_vars["opcion"];
+		$run = $post_vars["run"];
+		$nombre = $post_vars["nombre"];
+		$hobby = $post_vars["hobby"]; */
+	}
 	extract($_POST, EXTR_OVERWRITE);
 
 	// The model for querying the database is instantiated.

@@ -65,3 +65,16 @@
 					$(this).fadeIn(3000);
 			});			
 		}
+
+        export const get_form_method = (option) => {
+            let method;
+            if (option==='registrar' && option=='registrar'){
+                return method = 'POST';
+            } else if (option==='modificar'&& option=='modificar'){
+                return method = 'PUT';
+            } else if (option==='eliminar'&& option=='eliminar'){
+                return method = 'DELETE';
+            }
+            console.log(option);
+            console.log(method);
+        }
