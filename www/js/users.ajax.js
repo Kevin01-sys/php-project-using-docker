@@ -76,8 +76,10 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                 $.ajax({
                     method: method,
                     url: "../controllers/users_save.php",
-                    data: frm
+                    data: frm,
+                    contentType:"application/json; charset=utf-8",
                 }).done(function(info){
+                    console.log(info);
                     const json_info = JSON.parse(info);
                     console.log(json_info);
                     display_message(json_info);
@@ -98,6 +100,7 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                     $.ajax({
                         method: "PUT",
                         url: "../controllers/users_save.php",
+                        contentType:"application/json; charset=utf-8",
                         data: {"id": idusuario,"opcion": opcion}
                     }).done(function(info){
                         console.log(info);

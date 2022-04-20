@@ -5,11 +5,19 @@
 	$informacion = [];
 
 	// Accessing incoming PUT or DELETE data from PHP
-	if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+/* 	if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
 		parse_str(file_get_contents("php://input"),$_POST);
-	}
+	} else if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+		parse_str(file_get_contents("php://input"),$_POST);
+	} */
+
+	/* It is working when you send data in json object. */
+/* 	$test = @file_get_contents('php://input');
+	$r = json_decode($test);
+	print_r($r); */
 
 	//The $_POST data is fetched
+	parse_str(file_get_contents("php://input"),$_POST);
 	extract($_POST, EXTR_OVERWRITE);
 
 	// The model for querying the database is instantiated.
