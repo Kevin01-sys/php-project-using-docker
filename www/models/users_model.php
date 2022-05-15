@@ -9,10 +9,14 @@ require_once "../config/db.php";
 class users_model extends Connect {
     private $db; // will be an instance of the class mysqli
     private $users; // to be an initiative to leave a complete list of all users
+    private $communes;
+    private $regions; 
 
 	public function __construct(){
 		$this->db = parent::connection();
 		$this->users = array();
+        $this->communes = array();
+        $this->regions = array();
 	}
 
     /* Get all active users from database */
@@ -31,6 +35,25 @@ class users_model extends Connect {
                 $stmt->close();
 
                 return $this->users;
+
+    }
+
+    /* Get all active users from database */
+    public function obtain_regions(){
+        $this->regions = [];
+        $stmt = $this->db->prepare("SELECT * FROM regiones");
+        $stmt->execute();
+        $stmt->bind_result($id,$region,$abreviatura, $capital);
+			// fetch(): so it will go through row by row in the log of what it finds
+			while($stmt->fetch()){
+				$this->regions['status'] = 'ok';
+				$this->regions['data'][]  = ["id"=> $id,"region" => $region];
+				}
+
+                $stmt->free_result();
+                $stmt->close();
+
+                return $this->regions;
 
     }
     

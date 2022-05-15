@@ -1,3 +1,4 @@
+
 import {spanish_language} from "./datatable/language.js";
 import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display_message, get_form_method} from "./app.js";
 

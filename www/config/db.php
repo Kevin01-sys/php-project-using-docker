@@ -7,7 +7,7 @@ require_once('config.php');
 	{
 		//protected $con;
 		
-		protected static function connection(){
+		public static function connection(){
 			//It gives error because: $this refers to the context of the current instance of the object. Static methods do not belong to the object instance.
 			//$this->con = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
 			$con = new mysqli(DB_HOST,DB_USER,DB_PASS,DB_NAME);
