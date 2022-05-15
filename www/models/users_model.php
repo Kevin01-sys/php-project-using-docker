@@ -6,7 +6,7 @@ require_once "../config/db.php";
 * class Users
 */
 
-class users_model extends Connect {
+class UsersModel extends Connect {
     private $db; // will be an instance of the class mysqli
     private $users; // to be an initiative to leave a complete list of all users
     private $communes;
@@ -38,13 +38,12 @@ class users_model extends Connect {
 
     }
 
-    /* Get all active users from database */
+    /* Get all active region from database */
     public function obtain_regions(){
         $this->regions = [];
         $stmt = $this->db->prepare("SELECT * FROM regiones");
         $stmt->execute();
         $stmt->bind_result($id,$region,$abreviatura, $capital);
-			// fetch(): so it will go through row by row in the log of what it finds
 			while($stmt->fetch()){
 				$this->regions['status'] = 'ok';
 				$this->regions['data'][]  = ["id"=> $id,"region" => $region];
@@ -54,6 +53,30 @@ class users_model extends Connect {
                 $stmt->close();
 
                 return $this->regions;
+
+    }
+
+    /* Get all active region from database */
+    public function obtain_communes($idRegion){
+        $this->communes = [];
+        $query = "SELECT comunas.id, comunas.comuna FROM comunas
+        INNER JOIN provincias ON comunas.provincia_id = provincias.id
+        INNER JOIN regiones ON provincias.region_id = regiones.id
+        WHERE regiones.id=?";
+        $stmt = $this->db->prepare($query);
+        // Binds variables to a prepared statement
+	    $stmt->bind_param('i',$idRegion);
+        $stmt->execute();
+        $stmt->bind_result($id,$comuna);
+			while($stmt->fetch()){
+				$this->communes['status'] = 'ok';
+				$this->communes['data'][]  = ["id"=> $id,"comuna" => $comuna];
+				}
+
+                $stmt->free_result();
+                $stmt->close();
+
+                return $this->communes;
 
     }
     

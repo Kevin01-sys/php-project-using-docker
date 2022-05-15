@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de usuario</title>
+</head>
+<body>
+    <form>
+        <div>
+            <label for="region">Escoger una región:</label>
+            <select name="region" id="region">
+                <option value="0">Escoger región</option>
+                <!-- When the HTML is finished loading, it is loaded with an ajax function  -->
+            </select>
+        </div>
+
+        <div>
+            <label for="commune">Escoger una comuna:</label>
+            <select name="commune" id="commune">
+                <option value="0">Debe escoger primero una región</option>
+            </select>
+        </div>
+
+        <input id="testButton" type="button" class="btn btn-primary" value="button">
+        <input id="testInput" type="input" class="btn btn-primary" value="input">
+    </form>
+    <!-- file on which JavaScript tests will be performed -->
+    <script src="js/form_register.js" type="module"></script>
+</body>
+</html>

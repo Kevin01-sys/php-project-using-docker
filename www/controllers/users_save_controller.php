@@ -21,11 +21,10 @@
 	extract($_POST, EXTR_OVERWRITE);
 
 	// The model for querying the database is instantiated.
-	$user = new users_model();
+	$user = new UsersModel();
 
 	// They are executed according to what $opcion brings
 	switch ($opcion) {
-
 		case 'registrar':
 			//If the variables are empty, the user is prompted on the screen to fill in all fields
 			if($run != "" && $nombre != "" && $hobby != ""){

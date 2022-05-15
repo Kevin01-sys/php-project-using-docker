@@ -16,7 +16,7 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                 paging: true,   
                 ajax:{
                     "method":"GET",
-                    "url": "../controllers/users_list.php"
+                    "url": "../controllers/users_list_controller.php"
                     // The path for consuming the node.js api is left
                     //"method":"GET",
                     //"url": "http://localhost:4000/api/movies"
@@ -76,7 +76,7 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                 method = get_form_method(option);
                 $.ajax({
                     method: method,
-                    url: "../controllers/users_save.php",
+                    url: "../controllers/users_save_controller.php",
                     data: frm,
                     contentType:"application/json; charset=utf-8",
                 }).done(function(info){
@@ -100,7 +100,7 @@ import {get_data_edit, get_data_delete, prepare_new_user, data_cleaning, display
                     //console.log(opcion);
                     $.ajax({
                         method: "PUT",
-                        url: "../controllers/users_save.php",
+                        url: "../controllers/users_save_controller.php",
                         contentType:"application/json; charset=utf-8",
                         data: {"id": idusuario,"opcion": opcion}
                     }).done(function(info){
