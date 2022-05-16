@@ -99,3 +99,22 @@ function loadRegions() {
     xmlhttp.open("GET", "../controllers/region_list_controller.php", true);
     xmlhttp.send();
 }
+
+const validateCedula = () => {
+    const usuario = {
+        rut: '19.563.580-3',
+        documento: '523000983',
+    }
+    const url = `http://65.20.99.1:3000/validador?rut=${usuario.rut}&documento=${usuario.documento}`;
+    console.log(url);
+    fetch(url)
+    .then(response => response.json())
+    .then((json_data) => {
+        $divTestLoader.style.display = "none"; //Once the data has been fetched, the loader is hidden.
+        console.log(`Show validateCedula API results:`);
+        console.log(json_data);
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+}

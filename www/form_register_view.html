@@ -11,7 +11,11 @@
 </head>
 <body>
     <h1>Registro de usuarios</h3>
-    <form>
+    <form method="POST" enctype="multipart/form-data" id="formRegister">
+        <div>
+            <label for="rut">Ingrese su rut:</label>
+            <input type="text" id="rut" name="rut" maxlength="10" placeholder="Ej: 11111111-1">
+        </div>
         <div>
             <label for="region">Escoger una región:</label>
             <select name="region" id="region">
