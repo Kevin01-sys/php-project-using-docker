@@ -1,11 +1,11 @@
 const $selectRegion = document.getElementById('region'),
  $selectCommune = document.getElementById('commune'),
- $testButtonLoader = document.getElementById('testButtonLoader'),
- $testLoader = document.getElementById("loader"),
- $testImage = document.getElementById("image"),
- $inputFileImage = document.getElementById("imageFile");
-console.log($testImage);
-console.log($inputFileImage);
+ $divTestLoader = document.getElementById("loader"),
+ $imgTestImage = document.getElementById("image"),
+ $inputFileImage = document.getElementById("imageFile"),
+ $btnTestLoader = document.getElementById('testButtonLoader'),
+ $btnImageClean = document.getElementById("imageClean"); 
+
 let postObjTest = { 
     id: 1, 
     title: "What is AJAX", 
@@ -22,7 +22,7 @@ const validateCedula = () => {
     fetch(url)
     .then(response => response.json())
     .then((json_data) => {
-        $testLoader.style.display = "none"; /* Once the data has been fetched, the loader is hidden. */
+        $divTestLoader.style.display = "none"; /* Once the data has been fetched, the loader is hidden. */
         console.log(`Show validateCedula API results:`);
         console.log(json_data);
     })
@@ -95,8 +95,8 @@ const showImage = () => {
     if (file) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
-        $testImage.src = reader.result;
-        //console.log($testImage);
+        $imgTestImage.src = reader.result;
+        //console.log($imgTestImage);
       }
     }
   }
@@ -107,16 +107,24 @@ $selectRegion.onchange = () => { // if the value changes, the following happens
     loadCommunes(value);
 }
 
-$testButtonLoader.onclick = () => {
-    $testLoader.style.display = "block"; /* loader is displayed */
+$btnTestLoader.onclick = () => {
+    $divTestLoader.style.display = "block"; /* loader is displayed */
     validateCedula();
+}
+
+$btnImageClean.onclick = () => {
+    console.log(`Antes de limpiar la img: ${$imgTestImage.src}`);
+    console.log(`Antes de limpiar el input file: ${$inputFileImage.value}`);
+    $imgTestImage.src = "https://placeimg.com/200/200/tech";
+    $inputFileImage.value = "";
+    console.log(`Despues de limpiar el input file: ${$inputFileImage.value}`);
+    console.log(`Despues de limpiar la img: ${$imgTestImage.src}`);
 }
 
 $inputFileImage.onchange = () => {
     showImage();
 }
     
-
 document.addEventListener("DOMContentLoaded", () => { // when loading HTML document
     loadRegions();
 });

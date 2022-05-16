@@ -19,23 +19,22 @@
                 <!-- When the HTML is finished loading, it is loaded with an ajax function  -->
             </select>
         </div>
-
         <div>
             <label for="commune">Escoger una comuna:</label>
             <select name="commune" id="commune">
                 <option value="0">Debe escoger primero una región</option>
             </select>
         </div>
-
         <section class="cards">
             <figure class="card">
               <img src="https://placeimg.com/200/200/tech" class="img" id="image" alt="Tech">
               <figcaption>Tech</figcaption>
               <label for="myfile">Selecciona una imagen:</label>
               <input type="file" id="imageFile" name="imageFile" accept="image/*">
+              <input type="button" id="imageClean" name="imageClean" value="Limpiar imagen">
             </figure>
         </section>
-        
+        <input type="submit" value="Enviar datos">
     </form>
     <div>
         <input id="testButtonLoader" type="button" class="btn btn-primary" value="Ejemplo Loader">
