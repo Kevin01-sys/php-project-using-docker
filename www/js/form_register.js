@@ -1,7 +1,11 @@
 const $selectRegion = document.getElementById('region'),
  $selectCommune = document.getElementById('commune'),
  $testButtonLoader = document.getElementById('testButtonLoader'),
- $testLoader = document.getElementById("loader");
+ $testLoader = document.getElementById("loader"),
+ $testImage = document.getElementById("image"),
+ $inputFileImage = document.getElementById("imageFile");
+console.log($testImage);
+console.log($inputFileImage);
 let postObjTest = { 
     id: 1, 
     title: "What is AJAX", 
@@ -84,6 +88,19 @@ const loadCommunes = (region = undefined) => {
     })
 }
 
+const showImage = () => {
+    const file = $inputFileImage.files[0]; // object containing the image
+    console.log(file);
+    const reader = new FileReader(); // The FileReader object allows web applications to read files (or buffered information) stored on the client asynchronously
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        $testImage.src = reader.result;
+        //console.log($testImage);
+      }
+    }
+  }
+
 $selectRegion.onchange = () => { // if the value changes, the following happens
     let value = $selectRegion.value;
     console.log(`Obtaining select: ${$selectRegion.value}`);
@@ -94,6 +111,11 @@ $testButtonLoader.onclick = () => {
     $testLoader.style.display = "block"; /* loader is displayed */
     validateCedula();
 }
+
+$inputFileImage.onchange = () => {
+    showImage();
+}
+    
 
 document.addEventListener("DOMContentLoaded", () => { // when loading HTML document
     loadRegions();
