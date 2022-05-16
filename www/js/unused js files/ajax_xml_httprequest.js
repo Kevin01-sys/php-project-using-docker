@@ -1,4 +1,5 @@
-/* const loadRegions = () => {
+// all functions work, left for documentation in future projects
+const loadRegions = () => {
     const xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = () => {
@@ -27,9 +28,9 @@
     const url = "../controllers/region_list_controller.php";
     xmlhttp.open(method, url , true);
     xmlhttp.send();
-} */
+}
 
-/* const loadCommunes = (region = undefined) => {
+const loadCommunes = (region = undefined) => {
     const objectSend = { // object to be sent is created
         idRegion : region,
     }
@@ -66,9 +67,9 @@
              alert('something else other than 200 was returned');
          }
     }
-} */
+}
 
-/* function loadRegions() {
+function loadRegions() {
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function() {
@@ -97,4 +98,4 @@
     };
     xmlhttp.open("GET", "../controllers/region_list_controller.php", true);
     xmlhttp.send();
-} */
+}

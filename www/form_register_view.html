@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de usuario</title>
+    <!-- CSS used to style the sheet -->
+	<link href="css/form_register.css" rel="stylesheet" title="Default Style">
 </head>
 <body>
     <form>
@@ -23,9 +25,14 @@
             </select>
         </div>
 
-        <input id="testButton" type="button" class="btn btn-primary" value="button">
         <input id="testInput" type="input" class="btn btn-primary" value="input">
+        
     </form>
+    <div>
+        <input id="testButtonLoader" type="button" class="btn btn-primary" value="Ejemplo Loader">
+        <!-- by default the loader is hidden -->
+        <div style="display:none;" class="loader" id="loader"></div> 
+    </div>
     <!-- file on which JavaScript tests will be performed -->
     <script src="js/form_register.js" type="module"></script>
 </body>

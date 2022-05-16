@@ -1,9 +1,30 @@
 const $selectRegion = document.getElementById('region'),
- $selectCommune = document.getElementById('commune');
+ $selectCommune = document.getElementById('commune'),
+ $testButtonLoader = document.getElementById('testButtonLoader'),
+ $testLoader = document.getElementById("loader");
 let postObjTest = { 
     id: 1, 
     title: "What is AJAX", 
     body: "AJAX stands for Asynchronous JavaScript..."
+}
+
+const validateCedula = () => {
+    const usuario = {
+        rut: '19.563.580-3',
+        documento: '523000983',
+    }
+    const url = `http://65.20.99.1:3000/validador?rut=${usuario.rut}&documento=${usuario.documento}`;
+    console.log(url);
+    fetch(url)
+    .then(response => response.json())
+    .then((json_data) => {
+        $testLoader.style.display = "none"; /* Once the data has been fetched, the loader is hidden. */
+        console.log(`Show validateCedula API results:`);
+        console.log(json_data);
+    })
+    .catch((error) => {
+        console.log(error)
+    })
 }
 
 const loadRegions = () => {
@@ -67,6 +88,11 @@ $selectRegion.onchange = () => { // if the value changes, the following happens
     let value = $selectRegion.value;
     console.log(`Obtaining select: ${$selectRegion.value}`);
     loadCommunes(value);
+}
+
+$testButtonLoader.onclick = () => {
+    $testLoader.style.display = "block"; /* loader is displayed */
+    validateCedula();
 }
 
 document.addEventListener("DOMContentLoaded", () => { // when loading HTML document
