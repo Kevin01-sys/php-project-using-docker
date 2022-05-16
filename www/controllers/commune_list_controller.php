@@ -2,8 +2,7 @@
 	/* With the require_once we make use of the file users_model.php*/
 	require_once "../models/users_model.php";
 
-	$json = file_get_contents('php://input');
-	$dataObtain = json_decode($json);
+	$dataObtain = json_decode(file_get_contents('php://input')); // Get JSON and decode it
 	$idRegion = $dataObtain->idRegion;
 
 	// The model for querying the database is instantiated.
