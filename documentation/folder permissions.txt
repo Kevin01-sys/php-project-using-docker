@@ -1,0 +1,6 @@
+The uploads folder must have execute and write permissions to be able to upload images. If you are not logged in with a user
+sudo chmod -R 753 ./uploads
+
+File and folder permissions:
+Files: must be uploaded with 644 permissions.
+Folders: must be uploaded with 644 permissions.

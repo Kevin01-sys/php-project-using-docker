@@ -15,7 +15,7 @@ const postObjTest = {
     body: "AJAX stands for Asynchronous JavaScript..."
 }
 
-const objectRut = {
+const objRut = {
 	// Validates the rut with its complete string "XXXXXXXX-X"
 	validateRut : function (rutComplete) {
 		if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test( rutComplete ))
@@ -52,61 +52,62 @@ const objectRut = {
     }
 }
 
-const loadRegions = () => {
-    const url = "../controllers/region_list_controller.php";
-    fetch(url)
-    .then(response => response.json())
-    .then((json_data) => {
-        let option = new Option(), id, region;
-        for (const position in json_data.data) {
-            id = json_data.data[position].id;
-            region = json_data.data[position].region;
-            option = new Option(region, id); // a new option is created
-            $selectRegion.add(option); // the option is added to the select
-       }
-    })
-    .catch((error) => {
-        console.log(error)
-    })
-}
-
-const loadCommunes = (region = undefined) => {
-    const objectSend = { // object to be sent is created
-        idRegion : region,
-    }
-    const jsonSend = JSON.stringify(objectSend);  // Object is transformed to a json format valid for sending
-    console.log(`JSON to send: ${jsonSend}`);
-
-    const url = "../controllers/commune_list_controller.php";
-    const methodSend = 'POST';
-
-    fetch(url, {
-        method: methodSend,
-        body: jsonSend,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+const objCity = {
+    loadRegions : function(){
+        const url = "../controllers/region_list_controller.php";
+        fetch(url)
+        .then(response => response.json())
+        .then((json_data) => {
+            let option = new Option(), id, region;
+            for (const position in json_data.data) {
+                id = json_data.data[position].id;
+                region = json_data.data[position].region;
+                option = new Option(region, id); // a new option is created
+                $selectRegion.add(option); // the option is added to the select
+           }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    },
+    loadCommunes: function (region = undefined){
+        const objectSend = { // object to be sent is created
+            idRegion : region,
         }
-    })
-    .then(response => response.json())
-    .then((json_data) => {
-        console.log(json_data);
-        $selectCommune.innerHTML = ""; // The options are cleared each time the communes are searched for
-        let option = new Option('Elegir comuna', 0); // create option 0 
-        $selectCommune.add(option); // the presentation option is added
-        let id;
-        let comuna;
-        for (const position in json_data.data) {
-            id = json_data.data[position].id;
-            comuna = json_data.data[position].comuna;
-            option = new Option(comuna, id);
-            $selectCommune.add(option);
-       }
-       $selectCommune.options.selectedIndex = 0; // option 0 will always be the presentation to the user
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+        const jsonSend = JSON.stringify(objectSend);  // Object is transformed to a json format valid for sending
+        console.log(`JSON to send: ${jsonSend}`);
+    
+        const url = "../controllers/commune_list_controller.php";
+        const methodSend = 'POST';
+    
+        fetch(url, {
+            method: methodSend,
+            body: jsonSend,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then((json_data) => {
+            console.log(json_data);
+            $selectCommune.innerHTML = ""; // The options are cleared each time the communes are searched for
+            let option = new Option('Elegir comuna', 0); // create option 0 
+            $selectCommune.add(option); // the presentation option is added
+            let id;
+            let comuna;
+            for (const position in json_data.data) {
+                id = json_data.data[position].id;
+                comuna = json_data.data[position].comuna;
+                option = new Option(comuna, id);
+                $selectCommune.add(option);
+           }
+           $selectCommune.options.selectedIndex = 0; // option 0 will always be the presentation to the user
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
 }
 
 const showImage = () => {
@@ -130,19 +131,20 @@ const validateFormRegister = (e) =>{
         console.log(`${name} = ${value}`); // key1 = value1, then key2 = value2
     }
     if(rut==='') return alert("Rut no puede ir vacio");
-    if(!objectRut.validateRut(rut)) return alert(`Rut ${rut} ingresado no es valido`);
-    //console.log(objectRut.validateRut('19563580-3') ? 'rut ingresado es valido' : 'inválido');
+    if(!objRut.validateRut(rut)) return alert(`Rut ${rut} ingresado no es valido`);
+    //console.log(objRut.validateRut('19563580-3') ? 'rut ingresado es valido' : 'inválido');
+    $formRegister.submit();
 }
 
 $selectRegion.onchange = () => { // if the value changes, the following happens
     let value = $selectRegion.value;
     console.log(`Obtaining select: ${$selectRegion.value}`);
-    loadCommunes(value);
+    objCity.loadCommunes(value);
 }
 
 $btnTestLoader.onclick = () => {
     $divTestLoader.style.display = "block"; /* loader is displayed */
-    objectRut.validateCedula();
+    objRut.validateCedula();
 }
 
 $btnImageClean.onclick = () => {
@@ -156,16 +158,9 @@ $btnImageClean.onclick = () => {
 
 $inputFileImage.onchange = () => { 
     showImage();
-}
-
-/* $inputRut.onkeyup = () => { 
-    let test = $inputRut.value;
-    console.log(test);  
-    console.log('testing inputRut');
-} */
-     
+} 
 
 document.addEventListener("DOMContentLoaded", () => { // when loading HTML document
-    loadRegions();
+    objCity.loadRegions();
     $formRegister.addEventListener('submit', validateFormRegister);
 });
