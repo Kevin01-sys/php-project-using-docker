@@ -1,5 +1,6 @@
-<?php 
-require_once('config.php');
+<?php
+include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
+require_once (CONFIG_PATH."config.php");
 	/**
 	* DB connection using mysqli
 	*/

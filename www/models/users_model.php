@@ -1,7 +1,6 @@
 <?php
-
-require_once "../config/db.php";
-
+	include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
+    require_once (CONFIG_PATH."db.php");
 /**
 * class Users
 */

@@ -54,7 +54,7 @@ const objRut = {
 
 const objCity = {
     loadRegions : function(){
-        const url = "../controllers/region_list_controller.php";
+        const url = "/controllers/region_list_controller.php";
         fetch(url)
         .then(response => response.json())
         .then((json_data) => {
@@ -77,7 +77,7 @@ const objCity = {
         const jsonSend = JSON.stringify(objectSend);  // Object is transformed to a json format valid for sending
         console.log(`JSON to send: ${jsonSend}`);
     
-        const url = "../controllers/commune_list_controller.php";
+        const url = "/controllers/commune_list_controller.php";
         const methodSend = 'POST';
     
         fetch(url, {

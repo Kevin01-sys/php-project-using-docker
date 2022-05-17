@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de usuario</title>
     <!-- CSS used to style the sheet -->
-	<link href="css/form_register.css" rel="stylesheet" title="Default Style">
+	<link href="/static/css/form_register.css" rel="stylesheet" title="Default Style">
     <link rel="shortcut icon" href="#">
 </head>
 <body>
     <h1>Registro de usuarios</h3>
-    <form method="POST" action="./receive_form.php" enctype="multipart/form-data" id="formRegister">
+    <form method="POST" action="forms/receive_form.php" enctype="multipart/form-data" id="formRegister">
         <div>
             <label for="rut">Ingrese su rut:</label>
             <input type="text" id="rut" name="rut" maxlength="10" placeholder="Ej: 11111111-1">
@@ -46,6 +46,6 @@
         <div style="display:none;" class="loader" id="loader"></div> 
     </div>
     <!-- file on which JavaScript tests will be performed -->
-    <script src="js/form_register.js" type="module"></script>
+    <script src="static/js/form_register.js" type="module"></script>
 </body>
 </html>

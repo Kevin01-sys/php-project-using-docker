@@ -2,7 +2,7 @@
   .then(response => response.json())
   .then(json => console.log(json)) */
 
-  fetch('../controllers/users_list.php')
+  fetch('/controllers/users_list_controller.php')
   .then(response => response.json())
   /* .then(json => console.log(json)) */
   //.then(json => console.log(hola = JSON.stringify(json)))

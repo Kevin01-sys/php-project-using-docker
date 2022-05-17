@@ -1,6 +1,10 @@
 <?php
-//print_r($_FILES["imageFile"]);
-$target_dir = "uploads/";
+include_once ($_SERVER['DOCUMENT_ROOT'].'/dirs.php');
+//$root_dir = getcwd(); // I obtain: /var/www/html
+//$img_dir = '/static/uploads/image/'; // I obtain: uploads/
+//$target_dir = "{$root_dir}{$img_dir}"; // I obtain: /var/www/html/uploads/
+$target_dir = UPLOAD_IMAGE_PATH; //
+
 $target_file = $target_dir . basename($_FILES["imageFile"]["name"]);
 echo $target_file;
 $uploadOk = 1;
