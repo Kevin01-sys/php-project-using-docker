@@ -8,6 +8,7 @@
     <!-- CSS used to style the sheet -->
 	<link href="/static/css/form_register.css" rel="stylesheet" title="Default Style">
     <link rel="shortcut icon" href="#">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </head>
 <body>
     <h1>Registro de usuarios</h3>
@@ -40,10 +41,16 @@
         </section>
         <input type="submit" value="Enviar datos">
     </form>
-    <div>
+    <div id="apiValidateRut">
+        <h1>API valida rut</h3>
         <input id="testButtonLoader" type="button" class="btn btn-primary" value="Ejemplo Loader">
         <!-- by default the loader is hidden -->
         <div style="display:none;" class="loader" id="loader"></div> 
+    </div>
+    <div id="apiMarvel">
+        <h1>API Marvel</h3>
+        <input id="btnGetCharacters" type="button" class="btn btn-primary" value="Obtener personajes">
+        <!-- by default the loader is hidden -->
     </div>
     <!-- file on which JavaScript tests will be performed -->
     <script src="static/js/form_register.js" type="module"></script>
