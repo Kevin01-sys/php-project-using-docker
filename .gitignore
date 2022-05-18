@@ -9,4 +9,4 @@
 vendor/
 
 # files containing credentials
-.config
+config.php
