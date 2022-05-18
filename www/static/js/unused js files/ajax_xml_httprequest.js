@@ -181,3 +181,29 @@ const loadCommunesFetch = (region = undefined) => {
         console.log(error)
     })
 }
+
+const getCharacters1 = () => {
+    // you will also have to setup the referring domains on your marvel developer portal
+    const PRIV_KEY = "";
+    const PUBLIC_KEY = "b63e6111b207aaef530b033d989f6384";
+    // you need a new ts every request   
+    const ts = new Date().getTime();
+    const hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
+    // the api deals a lot in ids rather than just the strings you want to use
+    let characterId = '1009718'; // wolverine
+    let url = 'http://gateway.marvel.com:80/v1/public/comics';
+    let endpoint = `https://gateway.marvel.com:443/v1/public/characters?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`;
+    const usuario = {
+        rut: '19.563.580-3',
+        documento: '523000983',
+    }
+    console.log(endpoint);
+    fetch(endpoint)
+    .then(response => response.json())
+    .then((json_data) => {
+        console.log(json_data);
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+}

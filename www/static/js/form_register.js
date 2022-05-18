@@ -8,7 +8,8 @@ const
  $btnImageClean = document.getElementById("imageClean"), 
  $inputRut = document.getElementById("rut"),
  $formRegister = document.getElementById("formRegister"),
- $btnGetCharacters = document.getElementById("btnGetCharacters"); 
+ $btnGetClientCharacters = document.getElementById("btnGetClientCharacters"),  
+ $btnGetServerCharacters = document.getElementById("btnGetServerCharacters");
 
 const postObjTest = { 
     id: 1, 
@@ -124,24 +125,7 @@ const showImage = () => {
     }
   }
 
-const validateFormRegister = (e) =>{
-    e.preventDefault();
-    const formData = new FormData($formRegister);
-    let rut = formData.get("rut");
-    for(let [name, value] of formData) { // check the formdata object
-        console.log(`${name} = ${value}`); // key1 = value1, then key2 = value2
-    }
-    if(rut==='') return alert("Rut no puede ir vacio");
-    if(!objRut.validateRut(rut)) return alert(`Rut ${rut} ingresado no es valido`);
-    //console.log(objRut.validateRut('19563580-3') ? 'rut ingresado es valido' : 'inválido');
-    $formRegister.submit();
-}
-
-const getCharacters = () => {
-    const usuario = {
-        rut: '19.563.580-3',
-        documento: '523000983',
-    }
+const getClientSide = () => {
     const url = `https://gateway.marvel.com:443/v1/public/characters?apikey=b63e6111b207aaef530b033d989f6384`;
     console.log(url);
     fetch(url)
@@ -154,23 +138,12 @@ const getCharacters = () => {
     })
 }
 
-const getCharacters1 = () => {
-    // you will also have to setup the referring domains on your marvel developer portal
-    const PRIV_KEY = "";
-    const PUBLIC_KEY = "b63e6111b207aaef530b033d989f6384";
-    // you need a new ts every request   
+const getServerSide = () => {
     const ts = new Date().getTime();
-    const hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
-    // the api deals a lot in ids rather than just the strings you want to use
-    let characterId = '1009718'; // wolverine
-    let url = 'http://gateway.marvel.com:80/v1/public/comics';
-    let endpoint = `https://gateway.marvel.com:443/v1/public/characters?ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`;
-    const usuario = {
-        rut: '19.563.580-3',
-        documento: '523000983',
-    }
-    console.log(endpoint);
-    fetch(endpoint)
+    console.log(ts);
+    let url = `/api/marvel/ajax/characters_list_ajax.php`;
+    console.log(url);
+    fetch(url)
     .then(response => response.json())
     .then((json_data) => {
         console.log(json_data);
@@ -178,6 +151,19 @@ const getCharacters1 = () => {
     .catch((error) => {
         console.log(error)
     })
+}
+
+const validateFormRegister = (e) =>{
+    e.preventDefault();
+    const formData = new FormData($formRegister);
+    let rut = formData.get("rut");
+    for(let [name, value] of formData) { // check the formdata object
+        console.log(`${name} = ${value}`); // key1 = value1, then key2 = value2
+    }
+    if(rut==='') return alert("Rut no puede ir vacio");
+    if(!objRut.validateRut(rut)) return alert(`Rut ${rut} ingresado no es valido`);
+    //console.log(objRut.validateRut('19563580-3') ? 'rut ingresado es valido' : 'inválido');
+    $formRegister.submit();
 }
 
 $selectRegion.onchange = () => { // if the value changes, the following happens
@@ -200,9 +186,14 @@ $btnImageClean.onclick = () => {
     //console.log(`Despues de limpiar la img: ${$imgTestImage.src}`);
 }
 
-$btnGetCharacters.onclick = () => {
-    console.log('testing Get characters');
-    getCharacters();
+$btnGetClientCharacters.onclick = () => {
+    console.log('testing client-side');
+    getClientSide();
+}
+
+$btnGetServerCharacters.onclick = () => {
+    console.log('testing server-side');
+    getServerSide();
 }
 
 $inputFileImage.onchange = () => { 

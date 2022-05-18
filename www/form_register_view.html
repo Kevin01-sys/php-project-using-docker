@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </head>
 <body>
-    <h1>Registro de usuarios</h3>
+    <h1>Registro de usuarios</h1>
     <form method="POST" action="forms/receive_form.php" enctype="multipart/form-data" id="formRegister">
         <div>
             <label for="rut">Ingrese su rut:</label>
@@ -42,14 +42,15 @@
         <input type="submit" value="Enviar datos">
     </form>
     <div id="apiValidateRut">
-        <h1>API valida rut</h3>
+        <h2>API valida rut</h2>
         <input id="testButtonLoader" type="button" class="btn btn-primary" value="Ejemplo Loader">
         <!-- by default the loader is hidden -->
         <div style="display:none;" class="loader" id="loader"></div> 
     </div>
     <div id="apiMarvel">
-        <h1>API Marvel</h3>
-        <input id="btnGetCharacters" type="button" class="btn btn-primary" value="Obtener personajes">
+        <h2>API Marvel</h2>
+        <input id="btnGetClientCharacters" type="button" class="btn btn-primary" value="request client-side">
+        <input id="btnGetServerCharacters" type="button" class="btn btn-primary" value="request server-side">
         <!-- by default the loader is hidden -->
     </div>
     <!-- file on which JavaScript tests will be performed -->
