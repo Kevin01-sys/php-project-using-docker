@@ -207,3 +207,52 @@ const getCharacters1 = () => {
         console.log(error)
     })
 }
+
+
+const getXmlTest = () => {
+    const xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = () => {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+           if (xmlhttp.status == 200) {
+               let i,
+                title,
+                artist;
+               const $xmlDoc = xmlhttp.responseXML;
+               const $x = $xmlDoc.getElementsByTagName("CD");
+               const $b = $xmlDoc.getElementsByTagName("CATALOG");
+               const $c = $xmlDoc.getElementsByTagName("TITLE");
+               console.log($xmlDoc);
+               //console.log($x);
+               //console.log($x[0].children);
+               //console.log($x[0].getElementsByTagName("ARTIST")[0]);
+               //console.log($c);
+               //console.log($xmlDoc.activeElement.children);
+               //console.log($x[0].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue);
+               /* console.log($b);
+               console.log($b[0].children);
+               console.log($x);
+               console.log($x[0])
+               console.log($x[0].getElementsByTagName("ARTIST")[0])
+               console.log($x[0].getElementsByTagName("ARTIST")[0].childNodes[0])
+               console.log($x[0].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue) */
+               for (i = 0; i <$x.length; i++) {
+                title = $x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue;
+                artist = $x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue;
+                country = $x[i].getElementsByTagName("COUNTRY   ")[0].childNodes[0].nodeValue;
+                console.log(`${title}, ${artist}, ${country}`);
+              }
+           }
+           else if (xmlhttp.status == 400) {
+              alert('There was an error 400');
+           }
+           else {
+               alert('something else other than 200 was returned');
+           }
+        }
+    };
+    const method = 'GET';
+    const url = "/xml/cd_catalog.xml";
+    xmlhttp.open(method, url , true);
+    xmlhttp.send();
+}
