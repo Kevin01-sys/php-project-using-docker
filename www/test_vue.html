@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Vue version 2 -->
+    <script src="https://unpkg.com/vue@2"></script> 
+    <!-- Vue version 3 -->
+    <!-- <script src="https://unpkg.com/vue@3"></script> -->
+</head>
+<body>
+    <div id="app">
+        <button id="idGetData" name="nameGetData" @click="get_data">{{ name }}</button>
+        <ul id="example-1">
+            <li v-for="item in data">
+                {{ item }}
+            </li>
+          </ul>
+    </div>
+
+    <!-- file on which JavaScript tests will be performed -->
+    <script src="static/js/vue_2.js" type="module"></script>
+
+    <!-- <script>
+    const { createApp } = Vue
+
+    const app = createApp({
+    data() {
+        return {
+        count: 0
+        }
+    }
+    })
+
+    app.mount('#app')
+    </script> -->
+</body>
+</html>
