@@ -1,3 +1,11 @@
+<?php 
+$data['data'] = array("Peter"=>"35", "Ben"=>"37'", "Joe"=>"43");
+$dataEncode = json_encode($data);
+$dataStr= str_replace("'", "/",$dataEncode);
+echo $dataEncode;
+echo $dataStr;
+//var_dump($data);
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +19,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </head>
 <body>
+    <input type="text" value='<?php echo $dataEncode; ?>'>
+    <input type="text" value="<?php echo $dataEncode; ?>">
+    <input type="text" value="<?php print("$dataEncode"); ?>">
     <h1>Registro de usuarios</h1>
     <form method="POST" action="forms/receive_form.php" target="_blank" enctype="multipart/form-data" id="formRegister">
         <div>
@@ -65,5 +76,13 @@
     -->
     <!-- file on which JavaScript tests will be performed -->
     <script src="static/js/form_register.js" type="module"></script>
+    <script>
+        let jsonStr ='<?php echo $dataStr ?>';
+        let jsonCorrect = jsonStr.replace("/","'");
+        console.log(jsonStr);
+        console.log(jsonCorrect);
+        const jsonEnd = JSON.parse(jsonCorrect);
+        console.log(jsonEnd);
+    </script>
 </body>
 </html>
